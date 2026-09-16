@@ -7,6 +7,7 @@ import type { ContractInfo } from "../../lib/types";
 import { connectWallet } from "../../lib/wallet";
 import { DataSourceBanner, type DataSource } from "../ui/DataSourceBanner";
 import { AdminTransferPanel } from "./AdminTransferPanel";
+import { AuditLogPanel } from "./AuditLogPanel";
 import { RelaySignerForm } from "./RelaySignerForm";
 
 export function AdminTab() {
@@ -115,6 +116,8 @@ export function AdminTab() {
           <RelaySignerForm wallet={wallet} isAdmin={isAdmin} onRotated={loadContractInfo} />
         </>
       )}
+
+      <AuditLogPanel />
     </div>
   );
 }
