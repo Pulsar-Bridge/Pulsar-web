@@ -202,4 +202,14 @@ export const RELAY_ENDPOINTS = [
     path: "/admin/locks/:resource/force-release",
     description: "Force-releases a distributed lock regardless of owner. Admin-key gated, idempotent.",
   },
+  {
+    method: "GET",
+    path: "/admin/compliance/reports",
+    description: "Lists previously generated compliance reports. Admin-key gated.",
+  },
+  {
+    method: "POST",
+    path: "/admin/compliance/reports",
+    description: "Generates a new compliance report for a period (query param). Admin-key gated.",
+  },
 ] as const;
