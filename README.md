@@ -145,8 +145,11 @@ credential server-side and forwards the response (or a distinct `relay_not_confi
       hit/miss counters for the relay's query cache.
 - [x] Webhook filter rule management (`components/admin/WebhookFilterRulesPanel.tsx`,
       `/admin/webhooks/filter-rules*` proxies) — lists per-endpoint rules and sets/clears them.
-- [ ] Reconciliation admin views — `pulsar-core` exposes `/admin/reconciliation/*` but this
-      dashboard doesn't surface it yet.
+- [x] Reconciliation report visibility (`components/admin/ReconciliationReportsPanel.tsx`,
+      `/admin/reconciliation/reports*` proxies) — lists reports and drills into discrepancies.
+      Deliberately excludes "run reconciliation" (`POST /admin/reconciliation/run`) — it triggers a
+      live Horizon API call and a distributed lock server-side, not a casual dashboard action — and
+      the CSV/PDF export endpoint, which returns raw bytes rather than JSON.
 - [ ] `GET /admin/webhooks/failed`, webhook replay, and `/admin/instances` are defined in
       `pulsar-core`'s handler code but never mounted in its router (`src/lib.rs`) — dead/unreachable
       server-side, so this dashboard intentionally does not build against them. Revisit if/when
