@@ -167,4 +167,9 @@ export const RELAY_ENDPOINTS = [
     path: "/admin/audit/search",
     description: "Searchable audit trail across all entities. Admin-key gated.",
   },
+  {
+    method: "GET",
+    path: "/admin/webhooks/health",
+    description: "Delivery success rate per webhook endpoint. Admin-key gated.",
+  },
 ] as const;
