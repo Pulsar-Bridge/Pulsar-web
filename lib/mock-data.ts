@@ -15,6 +15,7 @@ import type {
   RelayCombinedCacheMetrics,
   RelayComplianceReport,
   RelayDailyTotal,
+  RelayReconciliationReportSummary,
   RelaySettlement,
   RelayStatusCount,
   RelayTenantQuota,
@@ -215,6 +216,33 @@ export const MOCK_ACTIVE_LOCKS: RelayActiveLock[] = [
     ttl_secs: 60,
     expected_duration_secs: 60,
     overdue: true,
+  },
+];
+
+export const MOCK_RECONCILIATION_REPORTS: RelayReconciliationReportSummary[] = [
+  {
+    id: "5c6d7e8f-9a0b-4c1d-8e2f-3a4b5c6d7e8f",
+    generated_at: "2026-09-15T02:00:00Z",
+    period_start: "2026-09-14T00:00:00Z",
+    period_end: "2026-09-15T00:00:00Z",
+    total_db_transactions: 96,
+    total_chain_payments: 94,
+    missing_on_chain_count: 1,
+    orphaned_payments_count: 0,
+    amount_mismatches_count: 1,
+    has_discrepancies: true,
+  },
+  {
+    id: "6d7e8f9a-0b1c-4d2e-9f3a-4b5c6d7e8f9a",
+    generated_at: "2026-09-14T02:00:00Z",
+    period_start: "2026-09-13T00:00:00Z",
+    period_end: "2026-09-14T00:00:00Z",
+    total_db_transactions: 88,
+    total_chain_payments: 88,
+    missing_on_chain_count: 0,
+    orphaned_payments_count: 0,
+    amount_mismatches_count: 0,
+    has_discrepancies: false,
   },
 ];
 
