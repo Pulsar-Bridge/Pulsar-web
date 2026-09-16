@@ -6,12 +6,14 @@ import { MOCK_TXS } from "../../lib/mock-data";
 import type { RelayTransaction } from "../../lib/types";
 import { DataSourceBanner, type DataSource } from "../ui/DataSourceBanner";
 import { StatusBadge } from "../ui/StatusBadge";
+import { TransactionDetail } from "./detail/TransactionDetail";
 
 export function TransactionsTab() {
   const [txs, setTxs] = useState<RelayTransaction[]>(MOCK_TXS);
   const [source, setSource] = useState<DataSource>("mock");
   const [detail, setDetail] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState(true);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -59,7 +61,11 @@ export function TransactionsTab() {
               </tr>
             ) : (
               txs.map((tx) => (
-                <tr key={tx.id} className="border-t border-[var(--border)]">
+                <tr
+                  key={tx.id}
+                  onClick={() => setSelectedId(tx.id)}
+                  className="cursor-pointer border-t border-[var(--border)] hover:bg-[var(--surface)]"
+                >
                   <td className="px-4 py-2 font-mono text-xs">{tx.id.slice(0, 8)}…</td>
                   <td className="px-4 py-2 font-mono text-xs">
                     {tx.stellar_account.slice(0, 6)}…{tx.stellar_account.slice(-4)}
@@ -78,6 +84,7 @@ export function TransactionsTab() {
           </tbody>
         </table>
       </div>
+      {selectedId && <TransactionDetail txId={selectedId} onClose={() => setSelectedId(null)} />}
     </div>
   );
 }
