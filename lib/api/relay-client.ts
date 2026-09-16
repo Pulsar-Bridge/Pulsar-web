@@ -52,6 +52,30 @@ async function getJson<T>(path: string, params?: Record<string, string | undefin
   return body as T;
 }
 
+async function mutateJson<T>(
+  method: "POST" | "PUT" | "PATCH" | "DELETE",
+  path: string,
+  body?: unknown,
+): Promise<T> {
+  let response: Response;
+  try {
+    response = await fetch(path, {
+      method,
+      headers: body !== undefined ? { "Content-Type": "application/json" } : undefined,
+      body: body !== undefined ? JSON.stringify(body) : undefined,
+      cache: "no-store",
+    });
+  } catch (err) {
+    throw new RelayApiError(0, { error: err instanceof Error ? err.message : "network error" });
+  }
+
+  const responseBody = response.status === 204 ? null : await response.json().catch(() => null);
+  if (!response.ok) {
+    throw new RelayApiError(response.status, responseBody);
+  }
+  return responseBody as T;
+}
+
 export function listTransactions(params?: {
   cursor?: string;
   limit?: number;
