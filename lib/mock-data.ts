@@ -10,6 +10,7 @@
 import type {
   ContractInfo,
   RelayAssetStats,
+  RelayAuditLogRow,
   RelayDailyTotal,
   RelaySettlement,
   RelayStatusCount,
@@ -125,6 +126,29 @@ export const MOCK_DAILY_TOTALS: RelayDailyTotal[] = [
 export const MOCK_ASSET_STATS: RelayAssetStats[] = [
   { asset_code: "USDC", total_amount: "28500.00", tx_count: 142, avg_amount: "200.70" },
   { asset_code: "USD", total_amount: "3480.50", tx_count: 6, avg_amount: "580.08" },
+];
+
+export const MOCK_AUDIT_LOGS: RelayAuditLogRow[] = [
+  {
+    id: "f1a2b3c4-5d6e-4f70-8a9b-0c1d2e3f4a5b",
+    entity_id: "d4a2b1c0-3f5e-4a6b-8c7d-1e2f3a4b5c6d",
+    entity_type: "settlement",
+    action: "status_changed",
+    old_val: { status: "pending" },
+    new_val: { status: "settled" },
+    actor: "admin@pulsar-bridge",
+    timestamp: "2026-09-14T09:00:05Z",
+  },
+  {
+    id: "a9b8c7d6-5e4f-4a3b-9c8d-7e6f5a4b3c2d",
+    entity_id: "b3f1c2a0-1e9d-4b3a-9c1a-6f2d0a1e2b3c",
+    entity_type: "transaction",
+    action: "bulk_status_update",
+    old_val: { status: "processing" },
+    new_val: { status: "completed" },
+    actor: "admin@pulsar-bridge",
+    timestamp: "2026-09-14T08:14:32Z",
+  },
 ];
 
 export const MOCK_CONTRACT_INFO: ContractInfo = {
