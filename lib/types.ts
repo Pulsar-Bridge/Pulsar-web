@@ -74,6 +74,24 @@ export interface RelayAssetStats {
   avg_amount: string;
 }
 
+/** Mirrors pulsar-core's `db::queries::AuditLogRow`. */
+export interface RelayAuditLogRow {
+  id: string;
+  entity_id: string;
+  entity_type: string;
+  action: string;
+  old_val: Record<string, unknown> | null;
+  new_val: Record<string, unknown> | null;
+  actor: string;
+  timestamp: string;
+}
+
+export interface RelayAuditSearchResponse {
+  total: number;
+  data: RelayAuditLogRow[];
+  next_cursor: string | null;
+}
+
 /** Mirrors pulsar-core's `error::AppError` JSON error body. */
 export interface RelayErrorBody {
   error: string;
