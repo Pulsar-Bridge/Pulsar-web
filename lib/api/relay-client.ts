@@ -15,6 +15,7 @@ import type {
   RelaySettlement,
   RelaySettlementListResponse,
   RelayStatusCount,
+  RelayTenantQuota,
   RelayTransaction,
   RelayTransactionListResponse,
   RelayWebhookEndpointHealth,
@@ -142,4 +143,18 @@ export function searchAuditLogs(params?: {
 
 export function listWebhookHealth(): Promise<RelayWebhookEndpointHealth[]> {
   return getJson("/api/relay/admin/webhooks/health");
+}
+
+export function listTenantQuotas(): Promise<RelayTenantQuota[]> {
+  return getJson("/api/relay/admin/quotas");
+}
+
+export function setTenantQuota(tenantId: string, customLimit: number): Promise<unknown> {
+  return mutateJson("PUT", `/api/relay/admin/quotas/${encodeURIComponent(tenantId)}`, {
+    custom_limit: customLimit,
+  });
+}
+
+export function resetTenantQuota(tenantId: string): Promise<unknown> {
+  return mutateJson("DELETE", `/api/relay/admin/quotas/${encodeURIComponent(tenantId)}/reset`);
 }
