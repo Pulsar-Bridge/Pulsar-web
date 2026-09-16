@@ -9,6 +9,7 @@ import { DataSourceBanner, type DataSource } from "../ui/DataSourceBanner";
 import { AdminTransferPanel } from "./AdminTransferPanel";
 import { AuditLogPanel } from "./AuditLogPanel";
 import { RelaySignerForm } from "./RelaySignerForm";
+import { TenantQuotasPanel } from "./TenantQuotasPanel";
 import { WebhookHealthPanel } from "./WebhookHealthPanel";
 
 export function AdminTab() {
@@ -120,6 +121,7 @@ export function AdminTab() {
 
       <AuditLogPanel />
       <WebhookHealthPanel />
+      <TenantQuotasPanel />
     </div>
   );
 }
