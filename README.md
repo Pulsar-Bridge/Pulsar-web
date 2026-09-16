@@ -137,6 +137,8 @@ credential server-side and forwards the response (or a distinct `relay_not_confi
       `/admin/webhooks/health` proxy) — read-only delivery success rate per endpoint.
 - [x] Tenant quota management (`components/admin/TenantQuotasPanel.tsx`, `/admin/quotas*` proxies)
       — per-tenant rate limit and usage window, with set-limit and reset-window admin actions.
+- [x] Distributed lock visibility (`components/admin/ActiveLocksPanel.tsx`, `/admin/locks*`
+      proxies) — lists locks held by the relay instance, with a confirm-gated force-release action.
 - [ ] Webhook filter rules / reconciliation / compliance-report admin views — `pulsar-core` exposes
       these (`/admin/reconciliation`, `/admin/compliance/reports`, webhook filter rule CRUD) but
       this dashboard doesn't surface them yet.
