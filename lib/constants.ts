@@ -41,7 +41,8 @@ export const ABI_ENDPOINTS: AbiEndpoint[] = [
   {
     name: "fail_transaction",
     mutability: "write",
-    signature: "fail_transaction(tx_id: String, reason: String, caller: Address) -> Result<(), ContractError>",
+    signature:
+      "fail_transaction(tx_id: String, reason: String, caller: Address) -> Result<(), ContractError>",
     description: "Admin or relay signer. Transitions Pending/Processing → Failed with a reason code.",
   },
   {
@@ -90,7 +91,8 @@ export const ABI_ENDPOINTS: AbiEndpoint[] = [
     name: "propose_admin",
     mutability: "admin",
     signature: "propose_admin(new_admin: Address) -> Result<(), ContractError>",
-    description: "Admin-gated. Nominates a new admin; the transfer only completes once new_admin calls accept_admin.",
+    description:
+      "Admin-gated. Nominates a new admin; the transfer only completes once new_admin calls accept_admin.",
   },
   {
     name: "accept_admin",
@@ -107,14 +109,17 @@ export const ABI_ENDPOINTS: AbiEndpoint[] = [
   {
     name: "upgrade",
     mutability: "admin",
-    signature: "upgrade(new_wasm_hash: BytesN<32>, expected_schema_version: u32) -> Result<(), ContractError>",
-    description: "Admin-gated. Replaces the contract WASM in place; requires the current schema version as a guard.",
+    signature:
+      "upgrade(new_wasm_hash: BytesN<32>, expected_schema_version: u32) -> Result<(), ContractError>",
+    description:
+      "Admin-gated. Replaces the contract WASM in place; requires the current schema version as a guard.",
   },
   {
     name: "pause",
     mutability: "admin",
     signature: "pause() -> Result<(), ContractError>",
-    description: "Admin-gated. Engages the emergency circuit breaker — blocks new register_callback ingestion only.",
+    description:
+      "Admin-gated. Engages the emergency circuit breaker — blocks new register_callback ingestion only.",
   },
   {
     name: "unpause",
@@ -150,7 +155,16 @@ export const RELAY_ENDPOINTS = [
   { method: "GET", path: "/transactions/:id", description: "Single transaction by ID, tenant-scoped." },
   { method: "GET", path: "/settlements", description: "Cursor-paginated settlement list, tenant-scoped." },
   { method: "GET", path: "/settlements/:id", description: "Single settlement by ID, tenant-scoped." },
-  { method: "GET", path: "/stats/status", description: "Transaction counts grouped by status. Admin-key gated." },
+  {
+    method: "GET",
+    path: "/stats/status",
+    description: "Transaction counts grouped by status. Admin-key gated.",
+  },
   { method: "GET", path: "/stats/daily", description: "Daily transaction volume totals. Admin-key gated." },
   { method: "GET", path: "/stats/assets", description: "Per-asset volume/average stats. Admin-key gated." },
+  {
+    method: "GET",
+    path: "/admin/audit/search",
+    description: "Searchable audit trail across all entities. Admin-key gated.",
+  },
 ] as const;
