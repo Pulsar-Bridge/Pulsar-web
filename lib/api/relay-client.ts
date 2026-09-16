@@ -9,6 +9,7 @@
 
 import type {
   RelayAssetStats,
+  RelayAuditSearchResponse,
   RelayDailyTotal,
   RelayErrorBody,
   RelaySettlement,
@@ -96,4 +97,20 @@ export function getDailyTotals(days = 7): Promise<RelayDailyTotal[]> {
 
 export function getAssetStats(): Promise<RelayAssetStats[]> {
   return getJson("/api/relay/stats/assets");
+}
+
+export function searchAuditLogs(params?: {
+  actor?: string;
+  action?: string;
+  entity_type?: string;
+  cursor?: string;
+  limit?: number;
+}): Promise<RelayAuditSearchResponse> {
+  return getJson("/api/relay/admin/audit/search", {
+    actor: params?.actor,
+    action: params?.action,
+    entity_type: params?.entity_type,
+    cursor: params?.cursor,
+    limit: params?.limit?.toString(),
+  });
 }
