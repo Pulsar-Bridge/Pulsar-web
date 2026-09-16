@@ -94,6 +94,8 @@ typecheck locally.
       same ID and flags a status mismatch instead of trusting either source alone.
 - [x] Admin audit trail (`components/admin/AuditLogPanel.tsx`, `/admin/audit/search` proxy) —
       read-only view of recent audit log entries.
+- [x] Webhook endpoint health (`components/admin/WebhookHealthPanel.tsx`,
+      `/admin/webhooks/health` proxy) — read-only delivery success rate per endpoint.
 - [ ] Webhook filter rules / reconciliation / compliance-report admin views — `pulsar-core` exposes
       these (`/admin/reconciliation`, `/admin/compliance/reports`, webhook filter rule CRUD) but
       this dashboard doesn't surface them yet.
