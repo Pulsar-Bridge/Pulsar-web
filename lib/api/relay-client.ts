@@ -15,6 +15,8 @@ import type {
   RelayDailyTotal,
   RelayErrorBody,
   RelayLocksResponse,
+  RelayReconciliationReportDetail,
+  RelayReconciliationReportListResponse,
   RelaySettlement,
   RelaySettlementListResponse,
   RelayStatusCount,
@@ -214,4 +216,18 @@ export function clearWebhookFilterRules(endpointId: string): Promise<unknown> {
     "DELETE",
     `/api/relay/admin/webhooks/endpoints/${encodeURIComponent(endpointId)}/filter-rules`,
   );
+}
+
+export function listReconciliationReports(params?: {
+  limit?: number;
+  offset?: number;
+}): Promise<RelayReconciliationReportListResponse> {
+  return getJson("/api/relay/admin/reconciliation/reports", {
+    limit: params?.limit?.toString(),
+    offset: params?.offset?.toString(),
+  });
+}
+
+export function getReconciliationReport(id: string): Promise<RelayReconciliationReportDetail> {
+  return getJson(`/api/relay/admin/reconciliation/reports/${encodeURIComponent(id)}`);
 }
