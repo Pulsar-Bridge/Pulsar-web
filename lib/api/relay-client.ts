@@ -10,6 +10,7 @@
 import type {
   RelayAssetStats,
   RelayAuditSearchResponse,
+  RelayCombinedCacheMetrics,
   RelayComplianceReport,
   RelayDailyTotal,
   RelayErrorBody,
@@ -183,4 +184,8 @@ export function listComplianceReports(params?: {
 
 export function generateComplianceReport(period: string): Promise<RelayComplianceReport> {
   return mutateJson("POST", `/api/relay/admin/compliance/reports?period=${encodeURIComponent(period)}`);
+}
+
+export function getCacheMetrics(): Promise<RelayCombinedCacheMetrics> {
+  return getJson("/api/relay/cache/metrics");
 }
