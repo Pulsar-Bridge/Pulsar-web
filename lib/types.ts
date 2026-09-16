@@ -102,6 +102,22 @@ export interface RelayWebhookEndpointHealth {
   last_success_at: string | null;
 }
 
+/** Mirrors pulsar-core's `middleware::quota::QuotaStatus`. */
+export interface RelayQuotaStatus {
+  limit: number;
+  used: number;
+  remaining: number;
+  reset_in_seconds: number;
+}
+
+/** Mirrors pulsar-core's `handlers::admin::quota::TenantQuotaView`. */
+export interface RelayTenantQuota {
+  tenant_id: string;
+  name: string;
+  rate_limit_per_minute: number;
+  quota_status: RelayQuotaStatus | null;
+}
+
 /** Mirrors pulsar-core's `error::AppError` JSON error body. */
 export interface RelayErrorBody {
   error: string;
