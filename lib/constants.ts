@@ -192,4 +192,14 @@ export const RELAY_ENDPOINTS = [
     path: "/admin/quotas/:tenant_id/reset",
     description: "Resets a tenant's current usage window early. Admin-key gated.",
   },
+  {
+    method: "GET",
+    path: "/admin/locks",
+    description: "Lists distributed locks currently held by this relay instance. Admin-key gated.",
+  },
+  {
+    method: "POST",
+    path: "/admin/locks/:resource/force-release",
+    description: "Force-releases a distributed lock regardless of owner. Admin-key gated, idempotent.",
+  },
 ] as const;
