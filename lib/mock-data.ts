@@ -9,10 +9,11 @@
 
 import type {
   ContractInfo,
+  RelayActiveLock,
   RelayAssetStats,
   RelayAuditLogRow,
+  RelayComplianceReport,
   RelayDailyTotal,
-  RelayActiveLock,
   RelaySettlement,
   RelayStatusCount,
   RelayTenantQuota,
@@ -204,6 +205,23 @@ export const MOCK_ACTIVE_LOCKS: RelayActiveLock[] = [
     ttl_secs: 60,
     expected_duration_secs: 60,
     overdue: true,
+  },
+];
+
+export const MOCK_COMPLIANCE_REPORTS: RelayComplianceReport[] = [
+  {
+    id: "3f4a5b6c-7d8e-4f9a-8b0c-1d2e3f4a5b6c",
+    period: "2026-08",
+    period_start: "2026-08-01T00:00:00Z",
+    period_end: "2026-09-01T00:00:00Z",
+    transaction_count: 412,
+    settlement_total: "98450.25",
+    anomaly_count: 2,
+    volume_by_asset: { USDC: "82100.00", USD: "16350.25" },
+    top_accounts: [
+      { stellar_account: "GABCDEFGHIJKLMNOPQRSTUVWXYZ234567ABCDEFGHIJKLMNOPQRSTUVW", total: "12500.00" },
+    ],
+    created_at: "2026-09-01T06:00:00Z",
   },
 ];
 
