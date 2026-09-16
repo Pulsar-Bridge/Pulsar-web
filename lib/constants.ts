@@ -217,4 +217,24 @@ export const RELAY_ENDPOINTS = [
     path: "/cache/metrics",
     description: "Query cache hit/miss counters. Mounted at relay root, admin-key gated.",
   },
+  {
+    method: "GET",
+    path: "/admin/webhooks/filter-rules",
+    description: "Lists webhook endpoints that have non-null filter rules. Admin-key gated.",
+  },
+  {
+    method: "GET",
+    path: "/admin/webhooks/endpoints/:id/filter-rules",
+    description: "Filter rules for a single webhook endpoint. Admin-key gated.",
+  },
+  {
+    method: "PUT",
+    path: "/admin/webhooks/endpoints/:id/filter-rules",
+    description: "Sets (or clears, with null) an endpoint's filter rules. Admin-key gated.",
+  },
+  {
+    method: "DELETE",
+    path: "/admin/webhooks/endpoints/:id/filter-rules",
+    description: "Clears an endpoint's filter rules. Admin-key gated.",
+  },
 ] as const;
