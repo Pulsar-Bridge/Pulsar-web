@@ -6,6 +6,7 @@ import { MOCK_CONTRACT_INFO } from "../../lib/mock-data";
 import type { ContractInfo } from "../../lib/types";
 import { connectWallet } from "../../lib/wallet";
 import { DataSourceBanner, type DataSource } from "../ui/DataSourceBanner";
+import { ActiveLocksPanel } from "./ActiveLocksPanel";
 import { AdminTransferPanel } from "./AdminTransferPanel";
 import { AuditLogPanel } from "./AuditLogPanel";
 import { RelaySignerForm } from "./RelaySignerForm";
@@ -122,6 +123,7 @@ export function AdminTab() {
       <AuditLogPanel />
       <WebhookHealthPanel />
       <TenantQuotasPanel />
+      <ActiveLocksPanel />
     </div>
   );
 }
