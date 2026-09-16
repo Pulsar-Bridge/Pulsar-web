@@ -212,4 +212,9 @@ export const RELAY_ENDPOINTS = [
     path: "/admin/compliance/reports",
     description: "Generates a new compliance report for a period (query param). Admin-key gated.",
   },
+  {
+    method: "GET",
+    path: "/cache/metrics",
+    description: "Query cache hit/miss counters. Mounted at relay root, admin-key gated.",
+  },
 ] as const;
