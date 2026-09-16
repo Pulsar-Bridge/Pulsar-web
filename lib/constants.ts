@@ -11,6 +11,20 @@ export interface AbiEndpoint {
   description: string;
 }
 
+/**
+ * Mirrors pulsar-core's `validation::state_transitions::SETTLEMENT_TRANSITIONS`
+ * — the settlement dispute-workflow state machine enforced server-side by
+ * `PATCH /admin/settlements/:id/status`. A status is always allowed to
+ * transition to itself (idempotent); this list only holds the *other*
+ * allowed transitions, matching `is_valid_transition`'s two-part check.
+ */
+export const SETTLEMENT_STATUS_TRANSITIONS: Record<string, string[]> = {
+  completed: ["pending_review"],
+  pending_review: ["disputed", "voided", "completed"],
+  disputed: ["adjusted", "voided"],
+  adjusted: ["completed"],
+};
+
 export const ABI_ENDPOINTS: AbiEndpoint[] = [
   {
     name: "initialize",

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ABI_ENDPOINTS, RELAY_ENDPOINTS } from "../constants";
+import { ABI_ENDPOINTS, RELAY_ENDPOINTS, SETTLEMENT_STATUS_TRANSITIONS } from "../constants";
 
 describe("ABI_ENDPOINTS", () => {
   it("has no duplicate entry-point names", () => {
@@ -25,5 +25,19 @@ describe("RELAY_ENDPOINTS", () => {
   it("has no duplicate method+path combinations", () => {
     const keys = RELAY_ENDPOINTS.map((e) => `${e.method} ${e.path}`);
     expect(new Set(keys).size).toBe(keys.length);
+  });
+});
+
+describe("SETTLEMENT_STATUS_TRANSITIONS", () => {
+  it("only reaches terminal-looking states through the documented dispute workflow", () => {
+    // completed can re-enter review; disputed resolves to adjusted or voided;
+    // adjusted always finalizes back to completed. Sanity-check the shape
+    // rather than duplicating the exact transition list from lib/constants.ts.
+    expect(SETTLEMENT_STATUS_TRANSITIONS.completed).toContain("pending_review");
+    expect(SETTLEMENT_STATUS_TRANSITIONS.pending_review).toEqual(
+      expect.arrayContaining(["disputed", "voided", "completed"]),
+    );
+    expect(SETTLEMENT_STATUS_TRANSITIONS.disputed).toEqual(expect.arrayContaining(["adjusted", "voided"]));
+    expect(SETTLEMENT_STATUS_TRANSITIONS.adjusted).toEqual(["completed"]);
   });
 });
