@@ -150,6 +150,11 @@ credential server-side and forwards the response (or a distinct `relay_not_confi
       Deliberately excludes "run reconciliation" (`POST /admin/reconciliation/run`) — it triggers a
       live Horizon API call and a distributed lock server-side, not a casual dashboard action — and
       the CSV/PDF export endpoint, which returns raw bytes rather than JSON.
+- [x] Settlement dispute workflow (`components/settlements/SettlementStatusForm.tsx`,
+      `PATCH /admin/settlements/:id/status` proxy) — click a row in the Settlements tab to move it
+      through `completed → pending_review → disputed/voided/completed` etc., mirroring
+      `SETTLEMENT_TRANSITIONS` (`lib/constants.ts`'s `SETTLEMENT_STATUS_TRANSITIONS`) so only
+      server-allowed transitions are ever offered.
 - [ ] `GET /admin/webhooks/failed`, webhook replay, and `/admin/instances` are defined in
       `pulsar-core`'s handler code but never mounted in its router (`src/lib.rs`) — dead/unreachable
       server-side, so this dashboard intentionally does not build against them. Revisit if/when
