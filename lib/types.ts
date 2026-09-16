@@ -135,6 +135,21 @@ export interface RelayLocksResponse {
   overdue: number;
 }
 
+/** Mirrors pulsar-core's `db::models::ComplianceReport`. */
+export interface RelayComplianceReport {
+  id: string;
+  period: string;
+  period_start: string;
+  period_end: string;
+  transaction_count: number;
+  /** BigDecimal, serialized as a string to preserve precision. */
+  settlement_total: string;
+  anomaly_count: number;
+  volume_by_asset: unknown;
+  top_accounts: unknown;
+  created_at: string;
+}
+
 /** Mirrors pulsar-core's `error::AppError` JSON error body. */
 export interface RelayErrorBody {
   error: string;
