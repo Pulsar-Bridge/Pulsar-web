@@ -178,6 +178,25 @@ export interface RelayCombinedCacheMetrics {
   idempotency_fallback_count: number;
 }
 
+/**
+ * Mirrors pulsar-core's webhook filter rule schema (all keys optional and
+ * ANDed together; see handlers::admin::webhook_filter_rules module docs).
+ */
+export interface RelayWebhookFilterRules {
+  asset_codes?: string[];
+  min_amount?: string;
+  max_amount?: string;
+  event_types?: string[];
+}
+
+/** Mirrors pulsar-core's `handlers::admin::webhook_filter_rules::FilterRulesResponse`. */
+export interface RelayWebhookFilterRulesResponse {
+  endpoint_id: string;
+  /** null means the endpoint receives every event it's subscribed to. */
+  filter_rules: RelayWebhookFilterRules | null;
+  updated_at: string;
+}
+
 /** Mirrors pulsar-core's `error::AppError` JSON error body. */
 export interface RelayErrorBody {
   error: string;
