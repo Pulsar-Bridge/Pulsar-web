@@ -9,6 +9,7 @@ import { DataSourceBanner, type DataSource } from "../ui/DataSourceBanner";
 import { ActiveLocksPanel } from "./ActiveLocksPanel";
 import { AdminTransferPanel } from "./AdminTransferPanel";
 import { AuditLogPanel } from "./AuditLogPanel";
+import { CacheMetricsPanel } from "./CacheMetricsPanel";
 import { ComplianceReportsPanel } from "./ComplianceReportsPanel";
 import { RelaySignerForm } from "./RelaySignerForm";
 import { TenantQuotasPanel } from "./TenantQuotasPanel";
@@ -126,6 +127,7 @@ export function AdminTab() {
       <TenantQuotasPanel />
       <ActiveLocksPanel />
       <ComplianceReportsPanel />
+      <CacheMetricsPanel />
     </div>
   );
 }
