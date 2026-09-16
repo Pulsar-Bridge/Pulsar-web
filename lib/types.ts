@@ -197,6 +197,72 @@ export interface RelayWebhookFilterRulesResponse {
   updated_at: string;
 }
 
+/** Mirrors pulsar-core's `handlers::admin::reconciliation::ReconciliationReportSummary`. */
+export interface RelayReconciliationReportSummary {
+  id: string;
+  generated_at: string;
+  period_start: string;
+  period_end: string;
+  total_db_transactions: number;
+  total_chain_payments: number;
+  missing_on_chain_count: number;
+  orphaned_payments_count: number;
+  amount_mismatches_count: number;
+  has_discrepancies: boolean;
+}
+
+export interface RelayReconciliationReportListResponse {
+  reports: RelayReconciliationReportSummary[];
+  total: number;
+  limit: number;
+  offset: number;
+}
+
+interface RelayReconciliationMissingTransaction {
+  id: string;
+  stellar_account: string;
+  amount: string;
+  asset_code: string;
+  memo: string | null;
+  created_at: string;
+}
+
+interface RelayReconciliationOrphanedPayment {
+  payment_id: string;
+  from: string;
+  to: string;
+  amount: string;
+  asset_code: string;
+  memo: string | null;
+}
+
+interface RelayReconciliationAmountMismatch {
+  transaction_id: string;
+  payment_id: string;
+  db_amount: string;
+  chain_amount: string;
+  memo: string | null;
+}
+
+/** Mirrors pulsar-core's `get_reconciliation_report` handler's anonymous `ReportDetail`. */
+export interface RelayReconciliationReportDetail {
+  id: string;
+  generated_at: string;
+  period_start: string;
+  period_end: string;
+  summary: {
+    total_db_transactions: number;
+    total_chain_payments: number;
+    missing_on_chain_count: number;
+    orphaned_payments_count: number;
+    amount_mismatches_count: number;
+    has_discrepancies: boolean;
+  };
+  missing_on_chain: RelayReconciliationMissingTransaction[];
+  orphaned_payments: RelayReconciliationOrphanedPayment[];
+  amount_mismatches: RelayReconciliationAmountMismatch[];
+}
+
 /** Mirrors pulsar-core's `error::AppError` JSON error body. */
 export interface RelayErrorBody {
   error: string;
