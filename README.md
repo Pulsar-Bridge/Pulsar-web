@@ -135,6 +135,8 @@ credential server-side and forwards the response (or a distinct `relay_not_confi
       read-only view of recent audit log entries.
 - [x] Webhook endpoint health (`components/admin/WebhookHealthPanel.tsx`,
       `/admin/webhooks/health` proxy) — read-only delivery success rate per endpoint.
+- [x] Tenant quota management (`components/admin/TenantQuotasPanel.tsx`, `/admin/quotas*` proxies)
+      — per-tenant rate limit and usage window, with set-limit and reset-window admin actions.
 - [ ] Webhook filter rules / reconciliation / compliance-report admin views — `pulsar-core` exposes
       these (`/admin/reconciliation`, `/admin/compliance/reports`, webhook filter rule CRUD) but
       this dashboard doesn't surface them yet.
