@@ -15,7 +15,6 @@ export function TransactionsTab() {
 
   useEffect(() => {
     let cancelled = false;
-    setLoading(true);
     listTransactions({ limit: 25 })
       .then((res) => {
         if (cancelled) return;

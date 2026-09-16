@@ -15,7 +15,6 @@ export function SettlementsTab() {
 
   useEffect(() => {
     let cancelled = false;
-    setLoading(true);
     listSettlements({ limit: 25 })
       .then((res) => {
         if (cancelled) return;
