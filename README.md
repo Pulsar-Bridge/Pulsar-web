@@ -23,14 +23,14 @@ Without any env vars set, every tab falls back to `lib/mock-data.ts` so the UI s
 
 ## Environment variables
 
-| Variable | Exposure | Purpose |
-|---|---|---|
-| `NEXT_PUBLIC_CONTRACT_ID` | client | Deployed `SynapseCoreContract` ID. Without it, the Admin tab and any on-chain read falls back to mock data. |
-| `NEXT_PUBLIC_SOROBAN_RPC_URL` | client | Soroban RPC endpoint. Defaults to the public testnet RPC. |
-| `NEXT_PUBLIC_STELLAR_NETWORK_PASSPHRASE` | client | Network passphrase; determines testnet vs. mainnet wallet-kit behavior. |
-| `RELAY_API_BASE_URL` | server-only | Base URL of the `pulsar-core` relay API. |
-| `RELAY_API_KEY` | server-only | Tenant `X-API-Key` used by `app/api/relay/transactions` and `.../settlements`. Never prefix this `NEXT_PUBLIC_` — it is only ever read inside Next.js Route Handlers. |
-| `RELAY_ADMIN_API_KEY` | server-only | Admin bearer key used by `app/api/relay/stats/*`. Same rule: server-only. |
+| Variable                                 | Exposure    | Purpose                                                                                                                                                               |
+| ---------------------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_CONTRACT_ID`                | client      | Deployed `SynapseCoreContract` ID. Without it, the Admin tab and any on-chain read falls back to mock data.                                                           |
+| `NEXT_PUBLIC_SOROBAN_RPC_URL`            | client      | Soroban RPC endpoint. Defaults to the public testnet RPC.                                                                                                             |
+| `NEXT_PUBLIC_STELLAR_NETWORK_PASSPHRASE` | client      | Network passphrase; determines testnet vs. mainnet wallet-kit behavior.                                                                                               |
+| `RELAY_API_BASE_URL`                     | server-only | Base URL of the `pulsar-core` relay API.                                                                                                                              |
+| `RELAY_API_KEY`                          | server-only | Tenant `X-API-Key` used by `app/api/relay/transactions` and `.../settlements`. Never prefix this `NEXT_PUBLIC_` — it is only ever read inside Next.js Route Handlers. |
+| `RELAY_ADMIN_API_KEY`                    | server-only | Admin bearer key used by `app/api/relay/stats/*`. Same rule: server-only.                                                                                             |
 
 ## Architecture
 
@@ -89,10 +89,13 @@ typecheck locally.
 - [x] Relay API client for `pulsar-core`'s tenant-scoped read routes (`/transactions`,
       `/transactions/:id`, `/settlements`, `/settlements/:id`) and admin stats routes
       (`/stats/status`, `/stats/daily`, `/stats/assets`), proxied through `/api/relay/*`.
-- [ ] Transaction detail drill-down (on-chain `get_transaction` cross-referenced with the relay's
-      DB row) — not yet built as a dedicated view.
+- [x] Transaction detail drill-down (`components/transactions/detail/TransactionDetail.tsx`) —
+      cross-references the on-chain `get_transaction` record against the relay's DB row for the
+      same ID and flags a status mismatch instead of trusting either source alone.
+- [x] Admin audit trail (`components/admin/AuditLogPanel.tsx`, `/admin/audit/search` proxy) —
+      read-only view of recent audit log entries.
 - [ ] Webhook filter rules / reconciliation / compliance-report admin views — `pulsar-core` exposes
-      these (`/admin/reconciliation`, `/admin/compliance/reports`, `/admin/audit/search`, etc.) but
+      these (`/admin/reconciliation`, `/admin/compliance/reports`, webhook filter rule CRUD) but
       this dashboard doesn't surface them yet.
 - [ ] `pulsar-swap` (Phase 2) integration — sibling repo doesn't exist yet.
 
