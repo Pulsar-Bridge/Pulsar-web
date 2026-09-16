@@ -14,6 +14,7 @@ import type {
   RelayDailyTotal,
   RelaySettlement,
   RelayStatusCount,
+  RelayTenantQuota,
   RelayTransaction,
   RelayWebhookEndpointHealth,
 } from "./types";
@@ -168,6 +169,21 @@ export const MOCK_WEBHOOK_HEALTH: RelayWebhookEndpointHealth[] = [
     success_rate: 61.0,
     total_deliveries: 340,
     last_success_at: "2026-08-30T12:00:00Z",
+  },
+];
+
+export const MOCK_TENANT_QUOTAS: RelayTenantQuota[] = [
+  {
+    tenant_id: "7e8f9a0b-1c2d-4e3f-8a9b-0c1d2e3f4a5b",
+    name: "acme-anchor",
+    rate_limit_per_minute: 600,
+    quota_status: { limit: 600, used: 412, remaining: 188, reset_in_seconds: 37 },
+  },
+  {
+    tenant_id: "2b3c4d5e-6f7a-4b8c-9d0e-1f2a3b4c5d6e",
+    name: "globex-anchor",
+    rate_limit_per_minute: 120,
+    quota_status: { limit: 120, used: 120, remaining: 0, reset_in_seconds: 12 },
   },
 ];
 
