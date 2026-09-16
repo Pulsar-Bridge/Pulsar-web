@@ -92,6 +92,16 @@ export interface RelayAuditSearchResponse {
   next_cursor: string | null;
 }
 
+/** Mirrors pulsar-core's `services::webhook_dispatcher::EndpointHealth`. */
+export interface RelayWebhookEndpointHealth {
+  id: string;
+  url: string;
+  enabled: boolean;
+  success_rate: number;
+  total_deliveries: number;
+  last_success_at: string | null;
+}
+
 /** Mirrors pulsar-core's `error::AppError` JSON error body. */
 export interface RelayErrorBody {
   error: string;
