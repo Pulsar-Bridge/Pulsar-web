@@ -31,7 +31,6 @@ export function AdminTab() {
 
   useEffect(() => {
     loadContractInfo();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const isAdmin = wallet !== null && source === "live" && wallet === info.admin;
