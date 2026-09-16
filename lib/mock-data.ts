@@ -12,6 +12,7 @@ import type {
   RelayActiveLock,
   RelayAssetStats,
   RelayAuditLogRow,
+  RelayCombinedCacheMetrics,
   RelayComplianceReport,
   RelayDailyTotal,
   RelaySettlement,
@@ -224,6 +225,25 @@ export const MOCK_COMPLIANCE_REPORTS: RelayComplianceReport[] = [
     created_at: "2026-09-01T06:00:00Z",
   },
 ];
+
+export const MOCK_CACHE_METRICS: RelayCombinedCacheMetrics = {
+  query_cache: {
+    hits: 18420,
+    misses: 1932,
+    total: 20352,
+    hit_rate: 90.5,
+    memory_hits: 15200,
+    memory_misses: 640,
+    memory_total: 15840,
+    memory_hit_rate: 95.9,
+  },
+  idempotency_cache_hits: 0,
+  idempotency_cache_misses: 0,
+  idempotency_lock_acquired: 0,
+  idempotency_lock_contention: 0,
+  idempotency_errors: 0,
+  idempotency_fallback_count: 0,
+};
 
 export const MOCK_CONTRACT_INFO: ContractInfo = {
   admin: "GADMIN00000000000000000000000000000000000000000000000000",
