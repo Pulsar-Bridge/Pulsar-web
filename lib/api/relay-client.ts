@@ -12,6 +12,7 @@ import type {
   RelayAuditSearchResponse,
   RelayDailyTotal,
   RelayErrorBody,
+  RelayLocksResponse,
   RelaySettlement,
   RelaySettlementListResponse,
   RelayStatusCount,
@@ -157,4 +158,12 @@ export function setTenantQuota(tenantId: string, customLimit: number): Promise<u
 
 export function resetTenantQuota(tenantId: string): Promise<unknown> {
   return mutateJson("DELETE", `/api/relay/admin/quotas/${encodeURIComponent(tenantId)}/reset`);
+}
+
+export function listActiveLocks(): Promise<RelayLocksResponse> {
+  return getJson("/api/relay/admin/locks");
+}
+
+export function forceReleaseLock(resource: string): Promise<unknown> {
+  return mutateJson("POST", `/api/relay/admin/locks/${encodeURIComponent(resource)}/force-release`);
 }
