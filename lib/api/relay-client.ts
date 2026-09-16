@@ -17,6 +17,7 @@ import type {
   RelayStatusCount,
   RelayTransaction,
   RelayTransactionListResponse,
+  RelayWebhookEndpointHealth,
 } from "../types";
 
 export class RelayApiError extends Error {
@@ -113,4 +114,8 @@ export function searchAuditLogs(params?: {
     cursor: params?.cursor,
     limit: params?.limit?.toString(),
   });
+}
+
+export function listWebhookHealth(): Promise<RelayWebhookEndpointHealth[]> {
+  return getJson("/api/relay/admin/webhooks/health");
 }
