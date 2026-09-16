@@ -150,6 +150,34 @@ export interface RelayComplianceReport {
   created_at: string;
 }
 
+/** Mirrors pulsar-core's `services::query_cache::CacheMetrics`. */
+export interface RelayCacheMetrics {
+  hits: number;
+  misses: number;
+  total: number;
+  /** 0-100 percentage, not a 0-1 fraction. */
+  hit_rate: number;
+  memory_hits: number;
+  memory_misses: number;
+  memory_total: number;
+  memory_hit_rate: number;
+}
+
+/**
+ * Mirrors pulsar-core's `handlers::stats::CombinedCacheMetrics`. The
+ * idempotency_* fields are currently hardcoded to 0 server-side (see
+ * handlers::stats::cache_metrics) — not yet wired to real counters.
+ */
+export interface RelayCombinedCacheMetrics {
+  query_cache: RelayCacheMetrics;
+  idempotency_cache_hits: number;
+  idempotency_cache_misses: number;
+  idempotency_lock_acquired: number;
+  idempotency_lock_contention: number;
+  idempotency_errors: number;
+  idempotency_fallback_count: number;
+}
+
 /** Mirrors pulsar-core's `error::AppError` JSON error body. */
 export interface RelayErrorBody {
   error: string;
