@@ -28,6 +28,15 @@ describe("mock data", () => {
     }
   });
 
+  it("every mock settlement has a status pulsar-core's dispute workflow actually produces", () => {
+    // Settlements start at "completed" (services::settlement.rs) and only ever
+    // move through the dispute-workflow states — "settled" isn't one of them.
+    const valid = new Set(["completed", "pending_review", "disputed", "voided", "adjusted"]);
+    for (const settlement of MOCK_SETTLEMENTS) {
+      expect(valid.has(settlement.status)).toBe(true);
+    }
+  });
+
   it("settlements referenced by a completed transaction exist in MOCK_SETTLEMENTS", () => {
     const settlementIds = new Set(MOCK_SETTLEMENTS.map((s) => s.id));
     for (const tx of MOCK_TXS) {
