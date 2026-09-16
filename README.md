@@ -139,9 +139,11 @@ credential server-side and forwards the response (or a distinct `relay_not_confi
       — per-tenant rate limit and usage window, with set-limit and reset-window admin actions.
 - [x] Distributed lock visibility (`components/admin/ActiveLocksPanel.tsx`, `/admin/locks*`
       proxies) — lists locks held by the relay instance, with a confirm-gated force-release action.
-- [ ] Webhook filter rules / reconciliation / compliance-report admin views — `pulsar-core` exposes
-      these (`/admin/reconciliation`, `/admin/compliance/reports`, webhook filter rule CRUD) but
-      this dashboard doesn't surface them yet.
+- [x] Compliance reporting (`components/admin/ComplianceReportsPanel.tsx`,
+      `/admin/compliance/reports` proxy) — lists generated reports and generates new ones by period.
+- [ ] Webhook filter rules / reconciliation admin views — `pulsar-core` exposes these
+      (`/admin/reconciliation`, webhook filter rule CRUD) but this dashboard doesn't surface them
+      yet.
 - [ ] `pulsar-swap` (Phase 2) integration — sibling repo doesn't exist yet.
 
 ## 🔗 Sibling Repos
