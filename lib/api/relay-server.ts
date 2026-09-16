@@ -67,3 +67,42 @@ export async function relayAdminGet(path: string, searchParams?: URLSearchParams
   const body = await response.json().catch(() => null);
   return { status: response.status, body };
 }
+
+/**
+ * Admin-bearer-authenticated POST/PUT/PATCH/DELETE against the relay. Used
+ * by admin route handlers that mutate state (quota overrides, settlement
+ * status changes, etc.) rather than just reading it.
+ */
+export async function relayAdminMutate(
+  method: "POST" | "PUT" | "PATCH" | "DELETE",
+  path: string,
+  body?: unknown,
+  searchParams?: URLSearchParams,
+): Promise<RelayFetchResult> {
+  const baseUrl = process.env.RELAY_API_BASE_URL;
+  const adminKey = process.env.RELAY_ADMIN_API_KEY;
+  if (!baseUrl || !adminKey) {
+    throw new RelayNotConfiguredError();
+  }
+
+  const url = new URL(path, baseUrl);
+  if (searchParams) {
+    searchParams.forEach((value, key) => url.searchParams.set(key, value));
+  }
+
+  const response = await fetch(url, {
+    method,
+    headers: {
+      Authorization: `Bearer ${adminKey}`,
+      ...(body !== undefined ? { "Content-Type": "application/json" } : {}),
+    },
+    body: body !== undefined ? JSON.stringify(body) : undefined,
+    cache: "no-store",
+  });
+
+  if (response.status === 204) {
+    return { status: response.status, body: null };
+  }
+  const responseBody = await response.json().catch(() => null);
+  return { status: response.status, body: responseBody };
+}
