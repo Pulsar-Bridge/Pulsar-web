@@ -237,4 +237,14 @@ export const RELAY_ENDPOINTS = [
     path: "/admin/webhooks/endpoints/:id/filter-rules",
     description: "Clears an endpoint's filter rules. Admin-key gated.",
   },
+  {
+    method: "GET",
+    path: "/admin/reconciliation/reports",
+    description: "Lists generated reconciliation reports. Admin-key gated.",
+  },
+  {
+    method: "GET",
+    path: "/admin/reconciliation/reports/:id",
+    description: "Full discrepancy detail for one reconciliation report. Admin-key gated.",
+  },
 ] as const;
