@@ -231,3 +231,10 @@ export function listReconciliationReports(params?: {
 export function getReconciliationReport(id: string): Promise<RelayReconciliationReportDetail> {
   return getJson(`/api/relay/admin/reconciliation/reports/${encodeURIComponent(id)}`);
 }
+
+export function updateSettlementStatus(
+  id: string,
+  params: { status: string; reason?: string; new_total?: string; actor?: string },
+): Promise<RelaySettlement> {
+  return mutateJson("PATCH", `/api/relay/admin/settlements/${encodeURIComponent(id)}/status`, params);
+}
