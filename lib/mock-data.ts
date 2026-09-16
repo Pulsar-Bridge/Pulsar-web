@@ -12,6 +12,7 @@ import type {
   RelayAssetStats,
   RelayAuditLogRow,
   RelayDailyTotal,
+  RelayActiveLock,
   RelaySettlement,
   RelayStatusCount,
   RelayTenantQuota,
@@ -184,6 +185,25 @@ export const MOCK_TENANT_QUOTAS: RelayTenantQuota[] = [
     name: "globex-anchor",
     rate_limit_per_minute: 120,
     quota_status: { limit: 120, used: 120, remaining: 0, reset_in_seconds: 12 },
+  },
+];
+
+export const MOCK_ACTIVE_LOCKS: RelayActiveLock[] = [
+  {
+    resource: "settlement:d4a2b1c0-3f5e-4a6b-8c7d-1e2f3a4b5c6d",
+    token: "tok-3f9a1c",
+    acquired_at: 1757999400,
+    ttl_secs: 30,
+    expected_duration_secs: 30,
+    overdue: false,
+  },
+  {
+    resource: "reconciliation:run",
+    token: "tok-7b2d4e",
+    acquired_at: 1757998900,
+    ttl_secs: 60,
+    expected_duration_secs: 60,
+    overdue: true,
   },
 ];
 
