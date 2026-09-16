@@ -13,6 +13,7 @@ import { CacheMetricsPanel } from "./CacheMetricsPanel";
 import { ComplianceReportsPanel } from "./ComplianceReportsPanel";
 import { RelaySignerForm } from "./RelaySignerForm";
 import { TenantQuotasPanel } from "./TenantQuotasPanel";
+import { WebhookFilterRulesPanel } from "./WebhookFilterRulesPanel";
 import { WebhookHealthPanel } from "./WebhookHealthPanel";
 
 export function AdminTab() {
@@ -124,6 +125,7 @@ export function AdminTab() {
 
       <AuditLogPanel />
       <WebhookHealthPanel />
+      <WebhookFilterRulesPanel />
       <TenantQuotasPanel />
       <ActiveLocksPanel />
       <ComplianceReportsPanel />
