@@ -9,6 +9,7 @@ import { DataSourceBanner, type DataSource } from "../ui/DataSourceBanner";
 import { AdminTransferPanel } from "./AdminTransferPanel";
 import { AuditLogPanel } from "./AuditLogPanel";
 import { RelaySignerForm } from "./RelaySignerForm";
+import { WebhookHealthPanel } from "./WebhookHealthPanel";
 
 export function AdminTab() {
   const [info, setInfo] = useState<ContractInfo>(MOCK_CONTRACT_INFO);
@@ -118,6 +119,7 @@ export function AdminTab() {
       )}
 
       <AuditLogPanel />
+      <WebhookHealthPanel />
     </div>
   );
 }
