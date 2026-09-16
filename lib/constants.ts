@@ -261,4 +261,9 @@ export const RELAY_ENDPOINTS = [
     path: "/admin/reconciliation/reports/:id",
     description: "Full discrepancy detail for one reconciliation report. Admin-key gated.",
   },
+  {
+    method: "PATCH",
+    path: "/admin/settlements/:id/status",
+    description: "Transitions a settlement through the dispute workflow. Admin-key gated.",
+  },
 ] as const;
