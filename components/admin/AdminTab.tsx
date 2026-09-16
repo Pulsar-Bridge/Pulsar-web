@@ -11,6 +11,7 @@ import { AdminTransferPanel } from "./AdminTransferPanel";
 import { AuditLogPanel } from "./AuditLogPanel";
 import { CacheMetricsPanel } from "./CacheMetricsPanel";
 import { ComplianceReportsPanel } from "./ComplianceReportsPanel";
+import { ReconciliationReportsPanel } from "./ReconciliationReportsPanel";
 import { RelaySignerForm } from "./RelaySignerForm";
 import { TenantQuotasPanel } from "./TenantQuotasPanel";
 import { WebhookFilterRulesPanel } from "./WebhookFilterRulesPanel";
@@ -130,6 +131,7 @@ export function AdminTab() {
       <ActiveLocksPanel />
       <ComplianceReportsPanel />
       <CacheMetricsPanel />
+      <ReconciliationReportsPanel />
     </div>
   );
 }
