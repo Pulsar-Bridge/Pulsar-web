@@ -15,6 +15,7 @@ import type {
   RelaySettlement,
   RelayStatusCount,
   RelayTransaction,
+  RelayWebhookEndpointHealth,
 } from "./types";
 
 export const MOCK_TXS: RelayTransaction[] = [
@@ -148,6 +149,25 @@ export const MOCK_AUDIT_LOGS: RelayAuditLogRow[] = [
     new_val: { status: "completed" },
     actor: "admin@pulsar-bridge",
     timestamp: "2026-09-14T08:14:32Z",
+  },
+];
+
+export const MOCK_WEBHOOK_HEALTH: RelayWebhookEndpointHealth[] = [
+  {
+    id: "9c8b7a6f-5e4d-4c3b-2a1f-0e9d8c7b6a5f",
+    url: "https://anchor.example.com/callbacks/pulsar-bridge",
+    enabled: true,
+    success_rate: 0.994,
+    total_deliveries: 5821,
+    last_success_at: "2026-09-16T07:50:00Z",
+  },
+  {
+    id: "1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5d",
+    url: "https://backup-anchor.example.com/callbacks",
+    enabled: false,
+    success_rate: 0.61,
+    total_deliveries: 340,
+    last_success_at: "2026-08-30T12:00:00Z",
   },
 ];
 
