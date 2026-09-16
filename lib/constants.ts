@@ -172,4 +172,24 @@ export const RELAY_ENDPOINTS = [
     path: "/admin/webhooks/health",
     description: "Delivery success rate per webhook endpoint. Admin-key gated.",
   },
+  {
+    method: "GET",
+    path: "/admin/quotas",
+    description: "Per-tenant rate limit and current usage window. Admin-key gated.",
+  },
+  {
+    method: "GET",
+    path: "/admin/quotas/:tenant_id",
+    description: "Rate limit and usage window for a single tenant. Admin-key gated.",
+  },
+  {
+    method: "PUT",
+    path: "/admin/quotas/:tenant_id",
+    description: "Overrides a tenant's per-minute rate limit. Admin-key gated.",
+  },
+  {
+    method: "DELETE",
+    path: "/admin/quotas/:tenant_id/reset",
+    description: "Resets a tenant's current usage window early. Admin-key gated.",
+  },
 ] as const;

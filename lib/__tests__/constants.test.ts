@@ -22,8 +22,8 @@ describe("ABI_ENDPOINTS", () => {
 });
 
 describe("RELAY_ENDPOINTS", () => {
-  it("has no duplicate paths", () => {
-    const paths = RELAY_ENDPOINTS.map((e) => e.path);
-    expect(new Set(paths).size).toBe(paths.length);
+  it("has no duplicate method+path combinations", () => {
+    const keys = RELAY_ENDPOINTS.map((e) => `${e.method} ${e.path}`);
+    expect(new Set(keys).size).toBe(keys.length);
   });
 });
