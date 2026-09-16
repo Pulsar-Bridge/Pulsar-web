@@ -10,6 +10,7 @@
 import type {
   RelayAssetStats,
   RelayAuditSearchResponse,
+  RelayComplianceReport,
   RelayDailyTotal,
   RelayErrorBody,
   RelayLocksResponse,
@@ -166,4 +167,20 @@ export function listActiveLocks(): Promise<RelayLocksResponse> {
 
 export function forceReleaseLock(resource: string): Promise<unknown> {
   return mutateJson("POST", `/api/relay/admin/locks/${encodeURIComponent(resource)}/force-release`);
+}
+
+export function listComplianceReports(params?: {
+  period?: string;
+  limit?: number;
+  offset?: number;
+}): Promise<RelayComplianceReport[]> {
+  return getJson("/api/relay/admin/compliance/reports", {
+    period: params?.period,
+    limit: params?.limit?.toString(),
+    offset: params?.offset?.toString(),
+  });
+}
+
+export function generateComplianceReport(period: string): Promise<RelayComplianceReport> {
+  return mutateJson("POST", `/api/relay/admin/compliance/reports?period=${encodeURIComponent(period)}`);
 }
