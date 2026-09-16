@@ -84,7 +84,7 @@ export function SettlementsTab() {
                       <StatusBadge status={s.status} />
                     </td>
                   </tr>
-                  {expandedId === s.id && (
+                  {expandedId === s.id && source === "live" && (
                     <tr className="border-t border-[var(--border)] bg-[var(--surface)]">
                       <td className="px-4 py-3" colSpan={6}>
                         <SettlementStatusForm settlement={s} onUpdated={handleStatusUpdated} />
