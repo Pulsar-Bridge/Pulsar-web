@@ -21,7 +21,7 @@ import type {
 export const MOCK_TXS: RelayTransaction[] = [
   {
     id: "b3f1c2a0-1e9d-4b3a-9c1a-6f2d0a1e2b3c",
-    stellar_account: "GABCDEFGHIJKLMNOPQRSTUVWXYZ234567ABCDEFGHIJKLMNOPQRSTUVWX",
+    stellar_account: "GABCDEFGHIJKLMNOPQRSTUVWXYZ234567ABCDEFGHIJKLMNOPQRSTUVW",
     amount: "250.00",
     asset_code: "USDC",
     status: "completed",
@@ -55,7 +55,7 @@ export const MOCK_TXS: RelayTransaction[] = [
   },
   {
     id: "c5d6e7f8-9a0b-4c1d-8e2f-3a4b5c6d7e8f",
-    stellar_account: "GMNBVCXZASDFGHJKLQWERTYUIOP123456MNBVCXZASDFGHJKLQWERTY",
+    stellar_account: "GMNBVCXZASDFGHJKLQWERTYUIOP123456MNBVCXZASDFGHJKLQWERTYA",
     amount: "75.50",
     asset_code: "USDC",
     status: "failed",
@@ -72,7 +72,7 @@ export const MOCK_TXS: RelayTransaction[] = [
   },
   {
     id: "e9f0a1b2-3c4d-4e5f-9a0b-1c2d3e4f5a6b",
-    stellar_account: "GQAZWSXEDCRFVTGBYHNUJMIKOLP098765QAZWSXEDCRFVTGBYHNUJMI",
+    stellar_account: "GQAZWSXEDCRFVTGBYHNUJMIKOLP098765QAZWSXEDCRFVTGBYHNUJMIA",
     amount: "500.00",
     asset_code: "USDC",
     status: "pending",
@@ -173,7 +173,7 @@ export const MOCK_WEBHOOK_HEALTH: RelayWebhookEndpointHealth[] = [
 
 export const MOCK_CONTRACT_INFO: ContractInfo = {
   admin: "GADMIN00000000000000000000000000000000000000000000000000",
-  relaySigner: "GRELAY0000000000000000000000000000000000000000000000000",
+  relaySigner: "GRELAY00000000000000000000000000000000000000000000000000",
   isPaused: false,
   isInitialised: true,
   schemaVersion: 1,
