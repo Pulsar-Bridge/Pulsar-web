@@ -143,9 +143,10 @@ credential server-side and forwards the response (or a distinct `relay_not_confi
       `/admin/compliance/reports` proxy) — lists generated reports and generates new ones by period.
 - [x] Query cache metrics (`components/admin/CacheMetricsPanel.tsx`, `/cache/metrics` proxy) —
       hit/miss counters for the relay's query cache.
-- [ ] Webhook filter rules / reconciliation admin views — `pulsar-core` exposes these
-      (`/admin/reconciliation`, webhook filter rule CRUD) but this dashboard doesn't surface them
-      yet.
+- [x] Webhook filter rule management (`components/admin/WebhookFilterRulesPanel.tsx`,
+      `/admin/webhooks/filter-rules*` proxies) — lists per-endpoint rules and sets/clears them.
+- [ ] Reconciliation admin views — `pulsar-core` exposes `/admin/reconciliation/*` but this
+      dashboard doesn't surface it yet.
 - [ ] `GET /admin/webhooks/failed`, webhook replay, and `/admin/instances` are defined in
       `pulsar-core`'s handler code but never mounted in its router (`src/lib.rs`) — dead/unreachable
       server-side, so this dashboard intentionally does not build against them. Revisit if/when
