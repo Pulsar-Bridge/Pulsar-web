@@ -6,6 +6,8 @@ import { MOCK_CONTRACT_INFO } from "../../lib/mock-data";
 import type { ContractInfo } from "../../lib/types";
 import { connectWallet } from "../../lib/wallet";
 import { DataSourceBanner, type DataSource } from "../ui/DataSourceBanner";
+import { AdminTransferPanel } from "./AdminTransferPanel";
+import { RelaySignerForm } from "./RelaySignerForm";
 
 export function AdminTab() {
   const [info, setInfo] = useState<ContractInfo>(MOCK_CONTRACT_INFO);
@@ -106,6 +108,13 @@ export function AdminTab() {
         )}
         {actionError && <p className="mt-2 text-xs text-[var(--danger)]">{actionError}</p>}
       </section>
+
+      {source === "live" && (
+        <>
+          <AdminTransferPanel wallet={wallet} isAdmin={isAdmin} onTransferred={loadContractInfo} />
+          <RelaySignerForm wallet={wallet} isAdmin={isAdmin} onRotated={loadContractInfo} />
+        </>
+      )}
     </div>
   );
 }
