@@ -22,6 +22,8 @@ import type {
   RelayTransaction,
   RelayTransactionListResponse,
   RelayWebhookEndpointHealth,
+  RelayWebhookFilterRules,
+  RelayWebhookFilterRulesResponse,
 } from "../types";
 
 export class RelayApiError extends Error {
@@ -188,4 +190,28 @@ export function generateComplianceReport(period: string): Promise<RelayComplianc
 
 export function getCacheMetrics(): Promise<RelayCombinedCacheMetrics> {
   return getJson("/api/relay/cache/metrics");
+}
+
+export function listWebhookFilterRules(): Promise<RelayWebhookFilterRulesResponse[]> {
+  return getJson("/api/relay/admin/webhooks/filter-rules");
+}
+
+export function setWebhookFilterRules(
+  endpointId: string,
+  filterRules: RelayWebhookFilterRules | null,
+): Promise<RelayWebhookFilterRulesResponse> {
+  return mutateJson(
+    "PUT",
+    `/api/relay/admin/webhooks/endpoints/${encodeURIComponent(endpointId)}/filter-rules`,
+    {
+      filter_rules: filterRules,
+    },
+  );
+}
+
+export function clearWebhookFilterRules(endpointId: string): Promise<unknown> {
+  return mutateJson(
+    "DELETE",
+    `/api/relay/admin/webhooks/endpoints/${encodeURIComponent(endpointId)}/filter-rules`,
+  );
 }
