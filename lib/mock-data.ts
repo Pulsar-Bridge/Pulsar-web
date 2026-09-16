@@ -20,6 +20,7 @@ import type {
   RelayTenantQuota,
   RelayTransaction,
   RelayWebhookEndpointHealth,
+  RelayWebhookFilterRulesResponse,
 } from "./types";
 
 export const MOCK_TXS: RelayTransaction[] = [
@@ -172,6 +173,14 @@ export const MOCK_WEBHOOK_HEALTH: RelayWebhookEndpointHealth[] = [
     success_rate: 61.0,
     total_deliveries: 340,
     last_success_at: "2026-08-30T12:00:00Z",
+  },
+];
+
+export const MOCK_WEBHOOK_FILTER_RULES: RelayWebhookFilterRulesResponse[] = [
+  {
+    endpoint_id: "9c8b7a6f-5e4d-4c3b-2a1f-0e9d8c7b6a5f",
+    filter_rules: { asset_codes: ["USDC"], min_amount: "10.00", event_types: ["deposit.completed"] },
+    updated_at: "2026-09-10T12:00:00Z",
   },
 ];
 
