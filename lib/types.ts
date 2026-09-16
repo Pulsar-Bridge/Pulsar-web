@@ -118,6 +118,23 @@ export interface RelayTenantQuota {
   quota_status: RelayQuotaStatus | null;
 }
 
+/** Mirrors pulsar-core's `services::lock_manager::ActiveLockInfo`. */
+export interface RelayActiveLock {
+  resource: string;
+  token: string;
+  /** Unix timestamp in seconds. */
+  acquired_at: number;
+  ttl_secs: number;
+  expected_duration_secs: number;
+  overdue: boolean;
+}
+
+export interface RelayLocksResponse {
+  active_locks: RelayActiveLock[];
+  total: number;
+  overdue: number;
+}
+
 /** Mirrors pulsar-core's `error::AppError` JSON error body. */
 export interface RelayErrorBody {
   error: string;
